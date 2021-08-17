@@ -14,21 +14,45 @@ students = [
     {name: "Norman Bates", cohort: :november}
   ]
 
+  def print_students_with_numbers(students)
+    students.each_with_index do |student,i|
+        puts "#{i}: #{student[:name]}"
+    end
+end 
+
+
+def input_students
+    puts "Please enter the names of the Students"
+    puts "To Finish, just hit return twice"
+    students = []
+    name = gets.chomp
+
+    while !name.empty? do
+        students << {name: name, cohort: :november}
+        puts "Now we have #{students.count} students"
+        # get another name from the user
+        name = gets.chomp
+    end
+    students
+end
+
 def print_header
     puts "The students of Villains Academy"
     puts "-------------"
-  end
+end
   
-  def print(students)
+def print(students)
     students.each do |student|
         puts "#{student[:name]} (#{student[:cohort]}) cohort"
     end
-  end
+end
   
-  def print_footer(students)
+def print_footer(students)
     puts "Overall, we have #{students.count} great students"
-  end
+end
 
+#students = input_students
 print_header
-print(students)
-print_footer(students)
+print_students_with_numbers(students)
+#print(students)
+#print_footer(students)
