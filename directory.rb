@@ -28,7 +28,16 @@ def print_students_beggining_with(students,letter)
         puts "#{i}: #{student[:name]}"
         #puts student[:name][0]
         end
-    end 
+    end
+
+def print_students_shorter_than(students)
+    reduce_list =  students.select { |student| student[:name].length <= 12 }
+    reduce_list.each_with_index do |student,i|
+        puts "#{i}: #{student[:name]}"
+        puts student[:name].length
+        #puts student[:name][0]
+    end
+end
 
 
 def input_students
