@@ -14,11 +14,21 @@ students = [
     {name: "Norman Bates", cohort: :november}
   ]
 
-  def print_students_with_numbers(students)
-    students.each_with_index do |student,i|
-        puts "#{i}: #{student[:name]}"
+def print_students_with_numbers(students)
+reduce_list =  students.select { |student| student[:name][0] == "D" }
+reduce_list.each_with_index do |student,i|
+    puts "#{i}: #{student[:name]}"
+    #puts student[:name][0]
     end
 end 
+
+def print_students_beggining_with(students,letter)
+    reduce_list =  students.select { |student| student[:name][0] == letter }
+    reduce_list.each_with_index do |student,i|
+        puts "#{i}: #{student[:name]}"
+        #puts student[:name][0]
+        end
+    end 
 
 
 def input_students
