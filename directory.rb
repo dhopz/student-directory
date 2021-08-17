@@ -1,7 +1,7 @@
 student_count = 11
 
 students = [
-    {name: "Dr. Hannibal Lecter", cohort: :november, hobbies: "coding, basketball", country_of_birth: "England"},
+    {name: "Dr. Hannibal Lecter", cohort: "June", hobbies: "coding, basketball", country_of_birth: "England"},
     {name: "Darth Vader", cohort: :november, hobbies: "coding, cricket", country_of_birth: "England"},
     {name: "Nurse Ratched", cohort: :november, hobbies: "coding, football", country_of_birth: "England"},
     {name: "Michael Corleone", cohort: :november, hobbies: "coding, basketball", country_of_birth: "England"},
@@ -11,8 +11,14 @@ students = [
     {name: "Freddy Krueger", cohort: :november, hobbies: "coding, basketball", country_of_birth: "Australia"},
     {name: "The Joker", cohort: :november, hobbies: "coding, football", country_of_birth: "New Zealand"},
     {name: "Joffrey Baratheon", cohort: :november, hobbies: "coding, basketball", country_of_birth: "South Africa"},
-    {name: "Norman Bates", cohort: :november, hobbies: "coding, knitting", country_of_birth: "Germany"}
+    {name: "Norman Bates", cohort: "June", hobbies: "coding, knitting", country_of_birth: "Germany"}
   ]
+
+def group_by_cohorts(students,cohort_month)
+    grouped_cohorts = students.group_by { |student, cohort| student[:cohort].itself }
+    #puts grouped_cohorts
+    puts grouped_cohorts[cohort_month]
+end
 
 def print_students_hobbies(students)
   students.each_with_index do |student,i|
@@ -87,9 +93,10 @@ def print_footer(students)
     puts "Overall, we have #{students.count} great students"
 end
 
-input_students
+#input_students
 #print_header
 #print_students_with_numbers(students)
 #print(students)
 #print_footer(students)
 #print_students_hobbies(students)
+group_by_cohorts(students,"June")
