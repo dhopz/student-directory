@@ -1,22 +1,29 @@
 student_count = 11
 
 students = [
-    {name: "Dr. Hannibal Lecter", cohort: :november},
-    {name: "Darth Vader", cohort: :november},
-    {name: "Nurse Ratched", cohort: :november},
-    {name: "Michael Corleone", cohort: :november},
-    {name: "Alex DeLarge", cohort: :november},
-    {name: "The Wicked Witch of the West", cohort: :november},
-    {name: "Terminator", cohort: :november},
-    {name: "Freddy Krueger", cohort: :november},
-    {name: "The Joker", cohort: :november},
-    {name: "Joffrey Baratheon", cohort: :november},
-    {name: "Norman Bates", cohort: :november}
+    {name: "Dr. Hannibal Lecter", cohort: :november, hobbies: "coding, basketball", country_of_birth: "England"},
+    {name: "Darth Vader", cohort: :november, hobbies: "coding, cricket", country_of_birth: "England"},
+    {name: "Nurse Ratched", cohort: :november, hobbies: "coding, football", country_of_birth: "England"},
+    {name: "Michael Corleone", cohort: :november, hobbies: "coding, basketball", country_of_birth: "England"},
+    {name: "Alex DeLarge", cohort: :november, hobbies: "coding, football", country_of_birth: "England"},
+    {name: "The Wicked Witch of the West", cohort: :november, hobbies: "coding, basketball", country_of_birth: "England"},
+    {name: "Terminator", cohort: :november, hobbies: "coding, basketball", country_of_birth: "Ireland"},
+    {name: "Freddy Krueger", cohort: :november, hobbies: "coding, basketball", country_of_birth: "Australia"},
+    {name: "The Joker", cohort: :november, hobbies: "coding, football", country_of_birth: "New Zealand"},
+    {name: "Joffrey Baratheon", cohort: :november, hobbies: "coding, basketball", country_of_birth: "South Africa"},
+    {name: "Norman Bates", cohort: :november, hobbies: "coding, knitting", country_of_birth: "Germany"}
   ]
 
+def print_students_hobbies(students)
+  students.each_with_index do |student,i|
+    puts "#{i}: #{student[:hobbies]}, from #{student[:country_of_birth]}"
+      #puts student[:name][0]
+    end
+end 
+
 def print_students_with_numbers(students)
-reduce_list =  students.select { |student| student[:name][0] == "D" }
-reduce_list.each_with_index do |student,i|
+#reduce_list =  students.select { |student| student[:name][0] == "D" }
+students.each_with_index do |student,i|
     puts "#{i}: #{student[:name]}"
     #puts student[:name][0]
     end
