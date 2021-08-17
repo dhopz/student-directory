@@ -16,8 +16,8 @@ students = [
 
 def print_students_hobbies(students)
   students.each_with_index do |student,i|
-    puts "#{i}: #{student[:hobbies]}, from #{student[:country_of_birth]}"
-      #puts student[:name][0]
+    puts "#{i}: #{student[:hobbies]}, from #{student[:country_of_birth]}".center(8)
+    puts student[:name][0].center(15,"*")
     end
 end 
 
@@ -79,6 +79,7 @@ end
 
 #students = input_students
 print_header
-print_students_with_numbers(students)
+#print_students_with_numbers(students)
 #print(students)
 #print_footer(students)
+print_students_hobbies(students)
