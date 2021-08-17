@@ -54,12 +54,22 @@ def input_students
     name = gets.chomp
 
     while !name.empty? do
-        students << {name: name, cohort: :november}
+        #students << {name: name, cohort: :november}
+        #puts "Now we have #{students.count} students"
+        puts "Which cohort?"
+        cohort = gets.chomp
+
+        if cohort.empty?
+            cohort = "December"
+        end
+        
+        students << {name: name, cohort: cohort}
         puts "Now we have #{students.count} students"
-        # get another name from the user
+        puts "Another Student?"
+
         name = gets.chomp
     end
-    students
+    puts students
 end
 
 def print_header
@@ -77,9 +87,9 @@ def print_footer(students)
     puts "Overall, we have #{students.count} great students"
 end
 
-#students = input_students
-print_header
+input_students
+#print_header
 #print_students_with_numbers(students)
 #print(students)
 #print_footer(students)
-print_students_hobbies(students)
+#print_students_hobbies(students)
