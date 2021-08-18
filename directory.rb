@@ -14,6 +14,8 @@ students = [
     {name: "Norman Bates", cohort: "June", hobbies: "coding, knitting", country_of_birth: "Germany"}
   ]
 
+#puts "There are this many #{students.count}"
+
 def group_by_cohorts(students,cohort_month)
     grouped_cohorts = students.group_by { |student, cohort| student[:cohort].itself }
     #puts grouped_cohorts
@@ -58,6 +60,13 @@ def input_students
     puts "To Finish, just hit return twice"
     students = []
     name = gets.chomp
+    #name = gets.chop
+    #name = gets[0..3]
+
+    # while name.empty?
+    #     puts "Need a Name"
+    #     name = gets.chomp
+    # end
 
     while !name.empty? do
         #students << {name: name, cohort: :november}
@@ -70,8 +79,8 @@ def input_students
         end
         
         students << {name: name, cohort: cohort}
+        
         number_of_students = students.count
-
         if number_of_students == 1
             puts "Now we have 1 Student"
         else
@@ -81,8 +90,10 @@ def input_students
         puts "Another Student?"
 
         name = gets.chomp
+        
     end
-    puts students
+    
+    students
 end
 
 def print_header
@@ -100,10 +111,15 @@ def print_footer(students)
     puts "Overall, we have #{students.count} great students"
 end
 
-input_students
-#print_header
-#print_students_with_numbers(students)
-#print(students)
-#print_footer(students)
-#print_students_hobbies(students)
-#group_by_cohorts(students,"June")
+students = input_students
+
+if students.count < 1
+    puts "User Input 0 Students"
+else
+    print_header
+    #print_students_with_numbers(students)
+    print(students)
+    print_footer(students)
+    #print_students_hobbies(students)
+    #group_by_cohorts(students,"June")
+end
