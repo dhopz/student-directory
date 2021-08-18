@@ -113,6 +113,15 @@ def save_students
 
 end
 
+def load_students
+    file = File.open("students.csv", "r")
+    file.readlines.each do |line|
+    name, cohort = line.chomp.split(',')
+      @students << {name: name, cohort: cohort.to_sym}
+    end
+    file.close
+end
+
 def print_header
     puts "The students of Villains Academy"
     puts "-------------"
@@ -129,49 +138,11 @@ def print_footer
     puts "-----"
 end
 
-# students = input_students
-
-# if students.count < 1
-#     puts "User Input 0 Students"
-# else
-#     print_header
-#     #print_students_with_numbers(students)
-#     print(students)
-#     print_footer(students)
-#     #print_students_hobbies(students)
-#     #group_by_cohorts(students,"June")
-# end
-
-# def interactive_menu
-#     students = []
-#     loop do
-#       # 1. print the menu and ask the user what to do
-#       puts "1. Input the students"
-#       puts "2. Show the students"
-#       puts "9. Exit" # 9 because we'll be adding more items
-#       # 2. read the input and save it into a variable
-#       selection = gets.chomp
-#       # 3. do what the user has asked
-      
-#       case selection
-#         when "1"
-#             students = input_students
-#         when "2"
-#             print_header
-#             print(students)
-#             print_footer(students)
-#         when "9"
-#             exit # this will cause the program to terminate
-#         else
-#             puts "I don't know what you meant, try again"
-#         end
-#     end
-# end
-
 def print_menu
     puts "1. Input the students"
     puts "2. Show the students"
     puts "3. Save the List to Students.csv"
+    puts "4. Load the list from students.csv"
     puts "9. Exit" 
 end
 
@@ -189,6 +160,8 @@ def process(selection)
         show_students
       when "3"
         save_students
+      when "4"
+        load_students
       when "9"
         exit
       else
