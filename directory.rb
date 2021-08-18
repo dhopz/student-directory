@@ -70,7 +70,14 @@ def input_students
         end
         
         students << {name: name, cohort: cohort}
-        puts "Now we have #{students.count} students"
+        number_of_students = students.count
+
+        if number_of_students == 1
+            puts "Now we have 1 Student"
+        else
+            puts "Now we have #{students.count} students"
+        end
+
         puts "Another Student?"
 
         name = gets.chomp
@@ -93,10 +100,10 @@ def print_footer(students)
     puts "Overall, we have #{students.count} great students"
 end
 
-#input_students
+input_students
 #print_header
 #print_students_with_numbers(students)
 #print(students)
 #print_footer(students)
 #print_students_hobbies(students)
-group_by_cohorts(students,"June")
+#group_by_cohorts(students,"June")
