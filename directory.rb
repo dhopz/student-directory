@@ -16,6 +16,8 @@ students = [
 
 #puts "There are this many #{students.count}"
 
+@students = []
+
 def group_by_cohorts(students,cohort_month)
     grouped_cohorts = students.group_by { |student, cohort| student[:cohort].itself }
     #puts grouped_cohorts
@@ -58,7 +60,7 @@ end
 def input_students
     puts "Please enter the names of the Students"
     puts "To Finish, just hit return twice"
-    students = []
+    #students = []
     name = gets.chomp
     #name = gets.chop
     #name = gets[0..3]
@@ -78,13 +80,13 @@ def input_students
             cohort = "December"
         end
         
-        students << {name: name, cohort: cohort}
+        @students << {name: name, cohort: cohort}
         
-        number_of_students = students.count
+        number_of_students = @students.count
         if number_of_students == 1
             puts "Now we have 1 Student"
         else
-            puts "Now we have #{students.count} students"
+            puts "Now we have #{@students.count} students"
         end
 
         puts "Another Student?"
@@ -93,7 +95,7 @@ def input_students
         
     end
     
-    students
+    @students
 end
 
 def print_header
@@ -101,14 +103,14 @@ def print_header
     puts "-------------"
 end
   
-def print(students)
-    students.each do |student|
+def print_student_list
+    @students.each do |student|
         puts "#{student[:name]} (#{student[:cohort]}) cohort"
     end
 end
   
-def print_footer(students)
-    puts "Overall, we have #{students.count} great students"
+def print_footer
+    puts "Overall, we have #{@students.count} great students"
     puts "-----"
 end
 
@@ -125,29 +127,61 @@ end
 #     #group_by_cohorts(students,"June")
 # end
 
-def interactive_menu
-    students = []
-    loop do
-      # 1. print the menu and ask the user what to do
-      puts "1. Input the students"
-      puts "2. Show the students"
-      puts "9. Exit" # 9 because we'll be adding more items
-      # 2. read the input and save it into a variable
-      selection = gets.chomp
-      # 3. do what the user has asked
+# def interactive_menu
+#     students = []
+#     loop do
+#       # 1. print the menu and ask the user what to do
+#       puts "1. Input the students"
+#       puts "2. Show the students"
+#       puts "9. Exit" # 9 because we'll be adding more items
+#       # 2. read the input and save it into a variable
+#       selection = gets.chomp
+#       # 3. do what the user has asked
       
-      case selection
-        when "1"
-            students = input_students
-        when "2"
-            print_header
-            print(students)
-            print_footer(students)
-        when "9"
-            exit # this will cause the program to terminate
-        else
-            puts "I don't know what you meant, try again"
-        end
+#       case selection
+#         when "1"
+#             students = input_students
+#         when "2"
+#             print_header
+#             print(students)
+#             print_footer(students)
+#         when "9"
+#             exit # this will cause the program to terminate
+#         else
+#             puts "I don't know what you meant, try again"
+#         end
+#     end
+# end
+
+def print_menu
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit" 
+end
+
+def show_students
+    print_header
+    print_student_list
+    print_footer
+end
+
+def process(selection)
+    case selection
+      when "1"
+        input_students
+      when "2"
+        show_students
+      when "9"
+        exit
+      else
+        puts "I don't know what you mean, try again"
+    end
+end
+
+def interactive_menu
+    loop do
+      print_menu
+      process(gets.chomp)
     end
 end
 
