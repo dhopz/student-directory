@@ -1,3 +1,7 @@
+#puts __FILE__
+#puts File.dirname(__FILE__)
+#puts File.basename(__FILE__)
+
 student_count = 11
 
 students = [
@@ -60,19 +64,10 @@ end
 def input_students
     puts "Please enter the names of the Students"
     puts "To Finish, just hit return twice"
-    #students = []
     name = STDIN.gets.chomp
-    #name = gets.chop
-    #name = gets[0..3]
-
-    # while name.empty?
-    #     puts "Need a Name"
-    #     name = gets.chomp
-    # end
-
+    
     while !name.empty? do
-        #students << {name: name, cohort: :november}
-        #puts "Now we have #{students.count} students"
+        
         puts "Which cohort?"
         cohort = STDIN.gets.chomp
 
@@ -98,23 +93,50 @@ def input_students
     @students
 end
 
+# def save_students
+#     puts "Saving Students.csv...."
+#     # open the file for writing
+#     file = File.open("students.csv", "w")
+
+#     # iterate over the array of students
+#     @students.each do |student|
+#       student_data = [student[:name], student[:cohort]]
+#       csv_line = student_data.join(",")
+#       file.puts csv_line
+#     end
+
+#     file.close
+# end
+
 def save_students
+    find_student_files
+    puts "Please enter the name of the File or create a new one"
+    
+    filename = STDIN.gets.chomp
+    #puts "Saving Students.csv...."
     # open the file for writing
-    file = File.open("students.csv", "w")
+    file = File.open(filename, "w")
 
     # iterate over the array of students
     @students.each do |student|
       student_data = [student[:name], student[:cohort]]
+      
+      #student_data = student_data.uniq{|student| [student[:name], student[:cohort]]} 
+      
       csv_line = student_data.join(",")
       file.puts csv_line
     end
-
+    puts "Saving Students.csv...."
     file.close
-
 end
 
 def load_students(filename = "students.csv")
-    file = File.open("students.csv", "r")
+    find_student_files
+    puts "Please enter the name of the File or create a new one"    
+    filename = STDIN.gets.chomp
+
+    puts "Student File being loaded....."
+    file = File.open(filename, "r")
     file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
       @students << {name: name, cohort: cohort.to_sym}
@@ -127,7 +149,8 @@ def try_load_students
     return if filename.nil? # get out of the method if it isn't given
     if File.exists?(filename) # if it exists
         load_students(filename)
-        puts "Loaded #{@students.count} from #{filename}"
+        puts "Loaded #{@students.count} students from #{filename}"
+        puts "---------------------"
     else
         puts "Sorry, #{filename} doesn't exist."
         exit
@@ -150,11 +173,19 @@ def print_footer
     puts "-----"
 end
 
+def find_student_files
+    basedir = "."
+    files = Dir.glob("*.csv")
+    puts "List of Files in the Directory"
+    puts files
+    puts "-----"
+end
+
 def print_menu
     puts "1. Input the students"
     puts "2. Show the students"
-    puts "3. Save the List to Students.csv"
-    puts "4. Load the list from students.csv"
+    puts "3. Save the List to file"
+    puts "4. Load Students from the Directory"
     puts "9. Exit" 
 end
 
@@ -187,6 +218,8 @@ def interactive_menu
       process(STDIN.gets.chomp)
     end
 end
+
+#find_student_files
 
 try_load_students
 interactive_menu
