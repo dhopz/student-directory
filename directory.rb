@@ -1,6 +1,7 @@
 #puts __FILE__
 #puts File.dirname(__FILE__)
 #puts File.basename(__FILE__)
+#myCode = File.read(__FILE__)
 
 student_count = 11
 
